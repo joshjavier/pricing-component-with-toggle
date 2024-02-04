@@ -18,6 +18,7 @@ body {
   color: hsl(var(--clr-grayish-blue-dark));
   background-color: hsl(var(--clr-grayish-blue-vl));
   margin: 0;
+  min-height: 100vh;
 
   background-image: url('./images/bg-top.svg');
   background-repeat: no-repeat;
@@ -26,7 +27,6 @@ body {
 
 main {
   --gutter: 24px;
-  --wrapper-max-width: 350px;
   padding-block: 64px 71px;
 }
 
@@ -120,28 +120,34 @@ h2 {
 }
 
 /* 1. Show only the right price tag based on selected billing option */
-.price-toggle:has(#monthly:checked) ~ .card .price-tags .annually {
+.price-toggle:has(#monthly:checked) ~ .price-cards .price-tags .annually {
   display: none; /* 1 */
 }
 
-.price-toggle:has(#annually:checked) ~ .card .price-tags .monthly {
+.price-toggle:has(#annually:checked) ~ .price-cards .price-tags .monthly {
   display: none; /* 1 */
 }
 
 /* CARDS */
 
+.price-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 32px;
+}
+
 .card {
   text-align: center;
   max-width: 350px;
+  width: 100%;
   color: hsl(var(--clr-grayish-blue));
   background-color: #fff;
   border-radius: 10px;
   padding: 34px 29px 31px;
   box-shadow: 0 4px 24px hsl(0 0% 0% / 10%);
-}
-
-.card + .card {
-  margin-top: 32px;
+  flex-grow: 1;
 }
 
 .card * {
@@ -194,8 +200,7 @@ h2 {
   letter-spacing: 1.43px;
   background: var(--clr-primary-gradient) padding-box, var(--clr-primary-gradient) border-box;
   color: #fff;
-  padding-block: 13px;
-  padding-inline: 80px 82px;
+  padding: 13px;
   border-radius: 6px;
   border: 1px solid transparent;
 }
@@ -210,6 +215,7 @@ h2 {
 .card.featured {
   color: #fff;
   background: linear-gradient(144.18deg, hsl(var(--clr-primary-light)), hsl(var(--clr-primary)));
+  z-index: 5;
 }
 
 .card.featured ul li {
@@ -225,6 +231,48 @@ h2 {
 .card.featured .btn:hover {
   background: transparent;
   color: #fff;
+}
+
+@media (min-width: 1098px) {
+  body {
+    background: url('./images/bg-top.svg') top right no-repeat,
+      url('./images/bg-bottom.svg') bottom left no-repeat,
+      hsl(var(--clr-grayish-blue-vlight));
+  }
+
+  main {
+    padding-block: 71px 100px;
+  }
+
+  .price-toggle {
+    margin-bottom: 65px;
+  }
+
+  .price-cards {
+    flex-direction: row;
+  }
+
+  .price-cards > :first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .price-cards > :last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .card {
+    padding-inline: 31px;
+  }
+
+  .card.featured {
+    padding-block: 57px 55px;
+  }
+
+  .card .price-tag {
+    gap: 9px;
+  }
 }
 
 /* UTILITIES */
