@@ -1,5 +1,6 @@
 :root {
-  --clr-primary: linear-gradient(hsl(236 72% 79%), hsl(237 63% 64%));
+  --clr-primary: 237 63% 64%;
+  --clr-primary-gradient: linear-gradient(to right, hsl(236 72% 79%), hsl(var(--clr-primary)));
   --clr-grayish-blue-vlight: 240 78% 98%;
   --clr-grayish-blue-light: 234 14% 74%;
   --clr-grayish-blue: 233 13% 49%;
@@ -23,6 +24,80 @@ body {
 
 .price-toggle:has(#annually:checked) ~ .card .price-tags .monthly {
   display: none;
+}
+
+/* CARDS */
+
+.card {
+  text-align: center;
+  max-width: 350px;
+  color: hsl(var(--clr-grayish-blue));
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 34px 29px 31px;
+  box-shadow: 0 4px 24px hsl(0 0% 0% / 10%);
+}
+
+.card * {
+  margin: 0;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.card .price-tags {
+  font-size: 72px;
+  letter-spacing: -2.16px;
+  margin-bottom: 24px;
+}
+
+.card .price-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.card .price-tag :first-child {
+  font-size: 40px;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+.card ul li {
+  padding: 17px;
+  border-bottom: 1px solid hsl(var(--clr-grayish-blue-light) / 50%);
+}
+
+.card ul li:first-child {
+  border-top: 1px solid hsl(var(--clr-grayish-blue-light) / 50%);
+}
+
+.card .btn {
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.43px;
+  background: var(--clr-primary-gradient) padding-box, var(--clr-primary-gradient) border-box;
+  color: #fff;
+  padding-block: 13px;
+  padding-inline: 80px 82px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.card .btn:hover {
+  border-color: hsl(var(--clr-grayish-blue));
+  background: #fff;
+  color: hsl(var(--clr-primary));
 }
 
 /* UTILITIES */
