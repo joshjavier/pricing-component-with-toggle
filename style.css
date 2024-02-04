@@ -34,6 +34,7 @@ h2 {
   font-size: 32px;
   margin-block: 0 40px;
   text-align: center;
+  color: hsl(var(--clr-grayish-blue));
 }
 
 /* PRICE TOGGLE */
@@ -163,6 +164,7 @@ h2 {
   font-size: 72px;
   letter-spacing: -2.16px;
   margin-bottom: 24px;
+  color: hsl(var(--clr-grayish-blue-dark));
 }
 
 .card .price-tag {
@@ -216,6 +218,10 @@ h2 {
   color: #fff;
   background: linear-gradient(144.18deg, hsl(var(--clr-primary-light)), hsl(var(--clr-primary)));
   z-index: 5;
+}
+
+.card.featured .price-tags {
+  color: #fff;
 }
 
 .card.featured ul li {
