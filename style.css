@@ -19,12 +19,100 @@ body {
   background-color: hsl(var(--clr-grayish-blue-vl));
 }
 
+h2 {
+  font-size: 32px;
+  margin-block: 0 40px;
+}
+
+/* PRICE TOGGLE */
+
+.price-toggle {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.price-toggle .option {
+  display: flex;
+  align-items: center;
+}
+
+/* Place the radio button for Annually after the label */
+.price-toggle .option.annually {
+  flex-direction: row-reverse;
+}
+
+/* Place the toggle switch between the two options */
+.price-toggle .option.monthly {
+  order: 1;
+}
+
+/**
+ * 1. Set radio buttons to the same size as the toggle button
+ * 2. Make the original radio buttons invisible
+ * 3. Set cursor to pointer for added affordance
+ */
+.price-toggle input[type=radio] {
+  width: 24px; /* 1 */
+  height: 24px; /* 1 */
+  margin: 0;
+  position: absolute;
+  opacity: 0; /* 2 */
+  cursor: pointer; /* 3 */
+}
+
+/* 1. Position the invisible radio buttons inside the toggle switch */
+.price-toggle input[type=radio][id=annually] {
+  translate: calc(100% + 28px); /* 1 */
+}
+
+.price-toggle input[type=radio][id=monthly] {
+  translate: calc(-100% - 28px); /* 1 */
+}
+
+.price-toggle label {
+  font-size: 15px;
+  color: hsl(var(--clr-grayish-blue) / 50%);
+}
+
+.toggle-switch {
+  width: 56px;
+  height: 32px;
+  padding: 4px;
+  background: var(--clr-primary-gradient);
+  border-radius: 99em;
+  display: flex;
+  /* Initially place the button on the right since Monthly is selected by default */
+  justify-content: flex-end;
+}
+
+.toggle-button {
+  background-color: #fff;
+  width: 24px;
+  border-radius: 99em;
+  transition: translate .2s cubic-bezier(0.76,0.05,0.86,0.06);
+  /* Place the toggle button above the invisible radio buttons so active option doesn't look selectable */
+  z-index: 10;
+}
+
+/* Add focus styles to toggle button when radio buttons are focused by keyboard */
+.price-toggle:has(:focus-visible) .toggle-button {
+  box-shadow: 0 0 0 12px hsl(var(--clr-primary) / 20%);
+}
+
+/* Move toggle button to the right when Annually is selected */
+.option:has(#annually:checked) ~ .toggle-switch > .toggle-button {
+  translate: -100%;
+}
+
+/* 1. Show only the right price tag based on selected billing option */
 .price-toggle:has(#monthly:checked) ~ .card .price-tags .annually {
-  display: none;
+  display: none; /* 1 */
 }
 
 .price-toggle:has(#annually:checked) ~ .card .price-tags .monthly {
-  display: none;
+  display: none; /* 1 */
 }
 
 /* CARDS */
