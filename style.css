@@ -1,4 +1,250 @@
+:root {
+  --clr-primary: 237 63% 64%;
+  --clr-primary-light: 236 72% 79%;
+  --clr-primary-gradient: linear-gradient(to right, hsl(var(--clr-primary-light)), hsl(var(--clr-primary)));
+  --clr-grayish-blue-vlight: 240 78% 98%;
+  --clr-grayish-blue-light: 234 14% 74%;
+  --clr-grayish-blue: 233 13% 49%;
+  --clr-grayish-blue-dark: 232 13% 33%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
   font-weight: 700;
+  color: hsl(var(--clr-grayish-blue-dark));
+  background-color: hsl(var(--clr-grayish-blue-vl));
+  margin: 0;
+
+  background-image: url('./images/bg-top.svg');
+  background-repeat: no-repeat;
+  background-position: top -36px right -195px;
+}
+
+main {
+  --gutter: 24px;
+  --wrapper-max-width: 350px;
+  padding-block: 64px 71px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-block: 0 40px;
+  text-align: center;
+}
+
+/* PRICE TOGGLE */
+
+.price-toggle {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 80px;
+  justify-content: center;
+}
+
+.price-toggle .option {
+  display: flex;
+  align-items: center;
+}
+
+/* Place the radio button for Annually after the label */
+.price-toggle .option.annually {
+  flex-direction: row-reverse;
+}
+
+/* Place the toggle switch between the two options */
+.price-toggle .option.monthly {
+  order: 1;
+}
+
+/**
+ * 1. Set radio buttons to the same size as the toggle button
+ * 2. Make the original radio buttons invisible
+ * 3. Set cursor to pointer for added affordance
+ */
+.price-toggle input[type=radio] {
+  width: 24px; /* 1 */
+  height: 24px; /* 1 */
+  margin: 0;
+  position: absolute;
+  opacity: 0; /* 2 */
+  cursor: pointer; /* 3 */
+}
+
+/* 1. Position the invisible radio buttons inside the toggle switch */
+.price-toggle input[type=radio][id=annually] {
+  translate: calc(100% + 28px); /* 1 */
+}
+
+.price-toggle input[type=radio][id=monthly] {
+  translate: calc(-100% - 28px); /* 1 */
+}
+
+.price-toggle label {
+  font-size: 15px;
+  color: hsl(var(--clr-grayish-blue) / 50%);
+}
+
+.toggle-switch {
+  width: 56px;
+  height: 32px;
+  padding: 4px;
+  background: var(--clr-primary-gradient);
+  border-radius: 99em;
+  display: flex;
+  /* Initially place the button on the right since Monthly is selected by default */
+  justify-content: flex-end;
+}
+
+.toggle-button {
+  background-color: #fff;
+  width: 24px;
+  border-radius: 99em;
+  transition: translate .2s cubic-bezier(0.76,0.05,0.86,0.06);
+  /* Place the toggle button above the invisible radio buttons so active option doesn't look selectable */
+  z-index: 10;
+}
+
+/* Add focus styles to toggle button when radio buttons are focused by keyboard */
+.price-toggle:has(:focus-visible) .toggle-button {
+  box-shadow: 0 0 0 12px hsl(var(--clr-primary) / 20%);
+}
+
+/* Move toggle button to the right when Annually is selected */
+.option:has(#annually:checked) ~ .toggle-switch > .toggle-button {
+  translate: -100%;
+}
+
+/* 1. Show only the right price tag based on selected billing option */
+.price-toggle:has(#monthly:checked) ~ .card .price-tags .annually {
+  display: none; /* 1 */
+}
+
+.price-toggle:has(#annually:checked) ~ .card .price-tags .monthly {
+  display: none; /* 1 */
+}
+
+/* CARDS */
+
+.card {
+  text-align: center;
+  max-width: 350px;
+  color: hsl(var(--clr-grayish-blue));
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 34px 29px 31px;
+  box-shadow: 0 4px 24px hsl(0 0% 0% / 10%);
+}
+
+.card + .card {
+  margin-top: 32px;
+}
+
+.card * {
+  margin: 0;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.card .price-tags {
+  font-size: 72px;
+  letter-spacing: -2.16px;
+  margin-bottom: 24px;
+}
+
+.card .price-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.card .price-tag :first-child {
+  font-size: 40px;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+.card ul li {
+  padding: 17px;
+  border-bottom: 1px solid hsl(var(--clr-grayish-blue-light) / 50%);
+}
+
+.card ul li:first-child {
+  border-top: 1px solid hsl(var(--clr-grayish-blue-light) / 50%);
+}
+
+.card .btn {
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.43px;
+  background: var(--clr-primary-gradient) padding-box, var(--clr-primary-gradient) border-box;
+  color: #fff;
+  padding-block: 13px;
+  padding-inline: 80px 82px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.card .btn:hover {
+  border-color: hsl(var(--clr-grayish-blue));
+  background: #fff;
+  color: hsl(var(--clr-primary));
+}
+
+/* Featured */
+.card.featured {
+  color: #fff;
+  background: linear-gradient(144.18deg, hsl(var(--clr-primary-light)), hsl(var(--clr-primary)));
+}
+
+.card.featured ul li {
+  border-color: hsl(0 0% 100% / 25%);
+}
+
+.card.featured .btn {
+  color: hsl(var(--clr-primary));
+  background: #fff;
+  border-color: #fff;
+}
+
+.card.featured .btn:hover {
+  background: transparent;
+  color: #fff;
+}
+
+/* UTILITIES */
+
+.visually-hidden:not(:focus):not(:active) {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.wrapper {
+  box-sizing: content-box;
+  max-width: var(--wrapper-max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
