@@ -1,6 +1,7 @@
 :root {
   --clr-primary: 237 63% 64%;
-  --clr-primary-gradient: linear-gradient(to right, hsl(236 72% 79%), hsl(var(--clr-primary)));
+  --clr-primary-light: 236 72% 79%;
+  --clr-primary-gradient: linear-gradient(to right, hsl(var(--clr-primary-light)), hsl(var(--clr-primary)));
   --clr-grayish-blue-vlight: 240 78% 98%;
   --clr-grayish-blue-light: 234 14% 74%;
   --clr-grayish-blue: 233 13% 49%;
@@ -98,6 +99,27 @@ body {
   border-color: hsl(var(--clr-grayish-blue));
   background: #fff;
   color: hsl(var(--clr-primary));
+}
+
+/* Featured */
+.card.featured {
+  color: #fff;
+  background: linear-gradient(144.18deg, hsl(var(--clr-primary-light)), hsl(var(--clr-primary)));
+}
+
+.card.featured ul li {
+  border-color: hsl(0 0% 100% / 25%);
+}
+
+.card.featured .btn {
+  color: hsl(var(--clr-primary));
+  background: #fff;
+  border-color: #fff;
+}
+
+.card.featured .btn:hover {
+  background: transparent;
+  color: #fff;
 }
 
 /* UTILITIES */
