@@ -18,6 +18,10 @@ body {
   color: hsl(var(--clr-grayish-blue-dark));
   background-color: hsl(var(--clr-grayish-blue-vl));
   margin: 0;
+
+  background-image: url('./images/bg-top.svg');
+  background-repeat: no-repeat;
+  background-position: top -36px right -195px;
 }
 
 main {
