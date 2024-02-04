@@ -17,11 +17,19 @@ body {
   font-weight: 700;
   color: hsl(var(--clr-grayish-blue-dark));
   background-color: hsl(var(--clr-grayish-blue-vl));
+  margin: 0;
+}
+
+main {
+  --gutter: 24px;
+  --wrapper-max-width: 350px;
+  padding-block: 64px 71px;
 }
 
 h2 {
   font-size: 32px;
   margin-block: 0 40px;
+  text-align: center;
 }
 
 /* PRICE TOGGLE */
@@ -31,6 +39,7 @@ h2 {
   align-items: center;
   gap: 24px;
   margin-bottom: 80px;
+  justify-content: center;
 }
 
 .price-toggle .option {
@@ -125,6 +134,10 @@ h2 {
   border-radius: 10px;
   padding: 34px 29px 31px;
   box-shadow: 0 4px 24px hsl(0 0% 0% / 10%);
+}
+
+.card + .card {
+  margin-top: 32px;
 }
 
 .card * {
@@ -223,4 +236,11 @@ h2 {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+.wrapper {
+  box-sizing: content-box;
+  max-width: var(--wrapper-max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
