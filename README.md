@@ -71,7 +71,7 @@ To update the visible price tag based on the selected billing option, I used the
 
 Since this is only a one-pager, I could use an internal stylesheet so that CSS styles are always loaded.
 
-I could also sprinkle a little bit of JavaScript to enhance the toggle switch UX. For example, to add support for dragging the button from one option to another, or switching between the two states by pressing on the currently active option.
+I could also sprinkle a little bit of JavaScript to enhance the toggle switch UX. For example, to add support for dragging the button from one option to another, or ~~switching between the two states by pressing on the currently active option~~ (already implemented with CSS).
 
 ### Useful resources
 

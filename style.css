@@ -76,6 +76,16 @@ h2 {
   cursor: pointer; /* 3 */
 }
 
+/**
+ * To emulate toggle switch functionality, the inactive radio button will be:
+ * 1. stretched to span the width of the toggle switch
+ * 2. placed on top to get rid of the "dead" zone
+ */
+ .price-toggle input[type=radio]:not(:checked) {
+  width: 48px; /* 1 */
+  z-index: 10; /* 2 */
+}
+
 /* 1. Position the invisible radio buttons inside the toggle switch */
 .price-toggle input[type=radio][id=annually] {
   translate: calc(100% + 28px); /* 1 */
@@ -97,8 +107,17 @@ h2 {
   background: var(--clr-primary-gradient);
   border-radius: 99em;
   display: flex;
+  transition: .2s opacity;
   /* Initially place the button on the right since Monthly is selected by default */
   justify-content: flex-end;
+}
+
+.option:has(:hover) ~ .toggle-switch {
+  opacity: 50%;
+}
+
+.option:has(:active) ~ .toggle-switch {
+  opacity: 80%;
 }
 
 .toggle-button {
@@ -106,8 +125,6 @@ h2 {
   width: 24px;
   border-radius: 99em;
   transition: translate .2s cubic-bezier(0.76,0.05,0.86,0.06);
-  /* Place the toggle button above the invisible radio buttons so active option doesn't look selectable */
-  z-index: 10;
 }
 
 /* Add focus styles to toggle button when radio buttons are focused by keyboard */
