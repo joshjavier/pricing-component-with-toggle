@@ -120,13 +120,10 @@ h2 {
   translate: -100%;
 }
 
-/* 1. Show only the right price tag based on selected billing option */
-.price-toggle:has(#monthly:checked) ~ .price-cards .price-tags .annually {
-  display: none; /* 1 */
-}
-
+/* Show only the right price tag based on selected billing option */
+.price-toggle:has(#monthly:checked) ~ .price-cards .price-tags .annually,
 .price-toggle:has(#annually:checked) ~ .price-cards .price-tags .monthly {
-  display: none; /* 1 */
+  display: none;
 }
 
 /* CARDS */
