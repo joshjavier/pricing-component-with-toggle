@@ -44,33 +44,42 @@ Users should be able to:
 
 ### What I learned
 
-Completing this challenge with just HTML and CSS is indeed possible. But I wanted to challenge myself even further by making it *accessible*, since "HTML and CSS only" solutions can often be hacky workarounds that pay little consideration towards accessibility.
+Completing this challenge with just HTML and CSS is indeed possible. But I wanted to challenge myself even further by making it *accessible*, since "HTML and CSS only" solutions are often hacky workarounds that pay little consideration towards accessibility.
 
 First, the HTML. In case the external stylesheet fails to load, the user can see both price tags for monthly and annual billing.
 
-SCREENSHOT
+![](./docs/unstyled-html.png)
+
+Later on I can add a `.visually-hidden` utility class to hide the extra phrases from sighted users, but still make them available to screen readers.
 
 It might even be better to initially hide the price toggle component to better manage user expectations re: interactivity.
 
 Then come the CSS. To implement the price toggle component, I moved the Annually and Monthly radio buttons so that they are placed on top of the toggle switch component.
 
+![](./docs/radio-to-toggle.png)
 
+To update the visible price tag based on the selected billing option, I used the `:has` pseudo-class and the subsequent-sibling selector `~` which both have good browser support in 2024.
 
-
-Since this is only a one-pager, another approach I could've done is to use an internal stylesheet so that CSS styles are always loaded. But I'm quite happy since
+```css
+.price-toggle:has(#monthly:checked) ~ .price-cards .price-tags .annually,
+.price-toggle:has(#annually:checked) ~ .price-cards .price-tags .monthly {
+  display: none;
+}
+```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+Since this is only a one-pager, I could use an internal stylesheet so that CSS styles are always loaded.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I could also sprinkle a little bit of JavaScript to enhance the toggle switch UX. For example, to add support for dragging the button from one option to another, or switching between the two states by pressing on the currently active option.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Selection controls — UI component series | by Taras Bakusevych](https://uxdesign.cc/selection-controls-ui-component-series-3badc0bdb546)
+- [Toggle Switch | Uxcel](https://app.uxcel.com/glossary/toggles)
+- [Inclusively Hiding &amp; Styling Checkboxes and Radio Buttons – Sara Soueidan](https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/)
+- [The power of progressive enhancement - Andy Bell](https://archive.hankchizljaw.com/wrote/the-power-of-progressive-enhancement/)
+- [git: fetch and merge, don&#8217;t pull &#8211; Mark&#039;s Blog](https://longair.net/blog/2009/04/16/git-fetch-and-merge/)
 
 ## Author
 
