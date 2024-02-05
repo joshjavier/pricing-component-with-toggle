@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: https://www.frontendmentor.io/solutions/pricing-component-with-accessible-toggle-built-with-html-and-css-GqqZUBT-5T
 - Live Site URL: https://fem-pricing-10567.netlify.app/
 
 ## My process
